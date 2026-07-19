@@ -249,6 +249,10 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   padding: calc(var(--nav-h) + 64px) 0 96px;
   border-bottom: 1px solid var(--line-soft);
 }
+/* Hero adalah flex container, jadi .container-nya harus dipaksa 100% —
+   tanpa ini ia menyusut mengikuti lebar konten lalu ter-center oleh
+   margin auto, dan teks hero jadi tidak sejajar dengan navbar. */
+.hero > .container { width: 100%; }
 .hero-inner { max-width: 720px; }
 
 .hero-eyebrow {
