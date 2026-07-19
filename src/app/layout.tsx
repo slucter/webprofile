@@ -1,19 +1,13 @@
 import type { Metadata, Viewport } from 'next'
-import { Playfair_Display, Inter, JetBrains_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import { profile } from '@/content/profile'
 import './globals.css'
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '700', '900'],
-  style: ['normal', 'italic'],
-  variable: '--font-playfair',
-  display: 'swap',
-})
-
+// Hanya dua family: grotesk untuk teks & judul, mono untuk label/meta.
+// Serif (Playfair) dibuang mengikuti arah desain minimal.
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-inter',
   display: 'swap',
 })
@@ -73,7 +67,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#041C1C',
+  themeColor: '#0D0D0D',
+  colorScheme: 'dark',
 }
 
 const personSchema = {
@@ -106,7 +101,7 @@ const personSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable} ${jetbrains.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jetbrains.variable}`}>
       <body>
         <script
           type="application/ld+json"

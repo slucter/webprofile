@@ -2,99 +2,85 @@
 
 import { useEffect, useState } from 'react'
 import { profile, hero } from '@/content/profile'
-import { DownloadIcon } from './Icons'
+import { ArrowRightIcon } from './Icons'
 
-const TYPE_SPEED = 55
+const TYPE_SPEED = 60
 
 export function Hero() {
   const [typed, setTyped] = useState('')
-  const [hideCursor, setHideCursor] = useState(false)
-  const [shown, setShown] = useState<number>(0)
+  const [done, setDone] = useState(false)
 
-  // Stagger tiga baris heading, lalu jalankan typewriter di baris pertama.
+  // Eyebrow diketik seperti perintah terminal, mengikuti pola `$ ...` referensi.
   useEffect(() => {
-    const timers = [
-      setTimeout(() => setShown(1), 200),
-      setTimeout(() => setShown(2), 700),
-      setTimeout(() => setShown(3), 1100),
-    ]
-    return () => timers.forEach(clearTimeout)
-  }, [])
-
-  useEffect(() => {
-    if (shown < 1) return
-
-    // Hormati preferensi reduced motion: tampilkan nama langsung.
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduced) {
-      setTyped(profile.name)
-      setHideCursor(true)
+      setTyped(hero.prompt)
+      setDone(true)
       return
     }
 
     let i = 0
     const id = setInterval(() => {
       i++
-      setTyped(profile.name.slice(0, i))
-      if (i >= profile.name.length) {
+      setTyped(hero.prompt.slice(0, i))
+      if (i >= hero.prompt.length) {
         clearInterval(id)
-        setTimeout(() => setHideCursor(true), 2000)
+        setTimeout(() => setDone(true), 1600)
       }
     }, TYPE_SPEED)
 
     return () => clearInterval(id)
-  }, [shown])
+  }, [])
 
   return (
     <section className="hero" id="hero">
-      <div className="hero-bg" />
-      <div className="hero-texture" />
-
-      <div className="hero-est">
-        <div className="hero-est-line" />
-        <span className="hero-est-text">EST. {profile.since}</span>
-      </div>
-
-      <div className="hero-content">
-        <div className="hero-badge">
-          <span className="hero-badge-dot" />
-          {profile.availability}
-        </div>
-
-        <h1 className="hero-heading">
-          <span className={`hero-line hero-line-1${shown >= 1 ? ' show' : ''}`}>
-            {/* Nama lengkap tetap dirender untuk SEO & screen reader, walau efeknya bertahap. */}
-            <span className="sr-only">{profile.name}</span>
+      <div className="container">
+        <div className="hero-inner">
+          <p className="hero-eyebrow">
+            <span className="hero-eyebrow-prompt">$</span>
+            {/* Teks utuh untuk screen reader; versi animasi disembunyikan darinya. */}
+            <span className="sr-only">{hero.prompt}</span>
             <span aria-hidden="true">{typed}</span>
-            <span
-              className={`typewriter-cursor${hideCursor ? ' hide' : ''}`}
-              aria-hidden="true"
-            />
-          </span>
-          <span className={`hero-line hero-line-2${shown >= 2 ? ' show' : ''}`}>
-            {profile.role}
-          </span>
-          <span className={`hero-line hero-line-3${shown >= 3 ? ' show' : ''}`}>
-            {profile.secondaryRole}
-          </span>
-        </h1>
+            <span className={`hero-caret${done ? ' hide' : ''}`} aria-hidden="true" />
+          </p>
 
-        <p className="hero-sub">{hero.tagline}</p>
+          <h1 className="hero-title">
+            {profile.name}
+            <span className="hero-role">
+              {profile.role} &middot; {profile.secondaryRole}
+            </span>
+          </h1>
 
-        <div className="hero-cta">
-          <a href="#projects" className="btn-primary">
-            View Work
-          </a>
-          <a href="/cv-muhamad-irhashdianto.pdf" className="btn-outline" download>
-            <DownloadIcon size={14} />
-            Download CV
-          </a>
+          <p className="hero-sub">
+            {hero.tagline.map((seg, i) =>
+              seg.code ? (
+                <code key={i}>{seg.text}</code>
+              ) : seg.em ? (
+                <strong key={i}>{seg.text}</strong>
+              ) : (
+                <span key={i}>{seg.text}</span>
+              )
+            )}
+          </p>
+
+          <div className="hero-cta">
+            <a href="#projects" className="btn-primary">
+              Lihat karya
+              <ArrowRightIcon size={15} />
+            </a>
+            <a href={`mailto:${profile.email}`} className="btn-ghost">
+              {profile.email}
+            </a>
+          </div>
+
+          <div className="hero-meta">
+            {hero.meta.map((m) => (
+              <span className="hero-meta-item" key={m.label}>
+                {m.label} <b>{m.value}</b>
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
-
-      <div className="hero-scroll">
-        <span className="hero-scroll-text">SCROLL</span>
-        <div className="hero-scroll-line" />
       </div>
     </section>
   )

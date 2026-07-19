@@ -1,38 +1,33 @@
 import { skillGroups } from '@/content/profile'
+import { SectionHead } from './SectionHead'
 
 export function Skills() {
+  const total = skillGroups.reduce((n, g) => n + g.skills.length, 0)
+
   return (
-    <section className="skills" id="skills">
-      <div className="skills-pattern" />
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <h2 className="section-label anim-label">Skills &amp; Expertise</h2>
+    <section className="section" id="skills">
+      <div className="container">
+        <SectionHead label="Skills" count={`${total} items`} />
 
-        <div className="skills-grid">
-          {skillGroups.map((group) => {
-            const color = `var(--cat-${group.category})`
-            const bg = `var(--cat-${group.category}-bg)`
+        <div className="tbl">
+          {skillGroups.map((group) => (
+            <div className="tbl-row tbl-row--split anim-item" key={group.title}>
+              <div className="tbl-key">{group.title}</div>
 
-            return (
-              <div className="skill-card anim-item" key={group.title}>
-                <div className="skill-card-accent" style={{ background: color }} />
-                <h3 className="skill-card-title">{group.title}</h3>
-                <p className="skill-card-desc">{group.desc}</p>
-
-                <div className="skill-tags">
-                  {group.skills.map((skill) => (
-                    <span
-                      className="skill-tag"
-                      key={skill.name}
-                      style={{ background: bg, color }}
-                    >
-                      {skill.name}
-                      {skill.level && <span className="skill-tag-level">{skill.level}</span>}
-                    </span>
-                  ))}
-                </div>
+              <div className="skill-list">
+                {group.skills.map((skill) => (
+                  <div className="skill-item" key={skill.name}>
+                    <span className="skill-name">{skill.name}</span>
+                    {skill.level && (
+                      <span className="skill-level" data-level={skill.level}>
+                        {skill.level}
+                      </span>
+                    )}
+                  </div>
+                ))}
               </div>
-            )
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>

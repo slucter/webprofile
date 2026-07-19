@@ -89,9 +89,37 @@ export const profile = {
 // HERO & ABOUT
 // ============================================================
 
+/**
+ * Tagline hero dipecah jadi segmen agar sebagian kata bisa ditegaskan
+ * tanpa menaruh HTML mentah di dalam string.
+ *  - em   : lebih terang dari teks sekitar
+ *  - code : gaya monospace
+ */
+export type TextSegment = { text: string; em?: boolean; code?: boolean }
+
 export const hero = {
-  tagline:
-    'Bridging the gap between secure infrastructure and clean, modern web applications. Building systems that are hardened from the ground up.',
+  /** Perintah semu di atas judul — mengikuti pola `$ ...` pada referensi. */
+  prompt: 'whoami',
+  tagline: [
+    { text: 'Software Engineer sejak ' },
+    { text: '2019', em: true },
+    { text: ', fokus di ' },
+    { text: 'full-stack web', em: true },
+    { text: ' dan ' },
+    { text: 'cybersecurity', em: true },
+    {
+      text: '. Membangun aplikasi yang bersih di permukaan dan diperkuat sampai ke lapisan server — dari ',
+    },
+    { text: 'frontend', code: true },
+    { text: ' sampai ', code: false },
+    { text: 'hardening', code: true },
+    { text: ' produksi.' },
+  ] as TextSegment[],
+  meta: [
+    { label: 'since', value: '2019' },
+    { label: 'companies', value: '4' },
+    { label: 'based in', value: 'Bandung, ID' },
+  ],
 }
 
 /** Teks about sengaja DIPERTAHANKAN dari desain asli — bukan summary dari CV. */
@@ -100,10 +128,12 @@ export const about = {
     'I started in cybersecurity -- running penetration tests, mapping attack surfaces, and learning how systems break before they break in production. That foundation shaped everything about how I build software today. Security is never an afterthought in my work; it is the starting point.',
     'Over time, I moved deeper into full-stack development and server infrastructure. I build end-to-end web applications with Vue, React, and Node.js on the frontend and backend, and I manage the servers they run on -- from bare-metal VPS provisioning to containerized deployments behind Nginx and Cloudflare. My goal is to deliver fast, secure, and reliable systems that work cleanly at every layer.',
   ],
-  stats: [
-    { value: '6+ yr', label: 'experience' },
-    { value: '4 companies', label: 'worked with' },
-    { value: '3 domains', label: 'covered' },
+  /** Kolom kiri About — dirender sebagai daftar definisi mono. */
+  aside: [
+    { term: 'Focus', detail: 'Full-stack web, security, server ops' },
+    { term: 'Experience', detail: '6+ years, 4 companies' },
+    { term: 'Based in', detail: 'Bandung, Jawa Barat, Indonesia' },
+    { term: 'Status', detail: 'Open to opportunities' },
   ],
 }
 

@@ -75,6 +75,15 @@ export function ExternalLinkIcon({ size = 14, className }: IconProps) {
   )
 }
 
+export function ArrowRightIcon({ size = 15, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className} aria-hidden="true">
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
+  )
+}
+
 export function ArrowUpIcon({ size = 16, className }: IconProps) {
   return (
     <svg {...base(size)} className={className} aria-hidden="true">
