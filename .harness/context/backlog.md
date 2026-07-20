@@ -12,20 +12,22 @@ Format tiap task:
 
 ## TODO
 
-### T-08 — Konfigurasi kredensial Resend
-- **Deskripsi:** Daftar di resend.com, verifikasi domain `irhash.my.id`, isi
-  `RESEND_API_KEY` dan `CONTACT_FROM_EMAIL` di Vercel Environment Variables.
-- **Kriteria sukses:** Kirim form dari situs produksi → email masuk ke
-  dev.irhashdianto@gmail.com. Tanpa ini API balas 503 dengan pesan ramah.
+### T-13 — Rotate API key Resend
+- **Deskripsi:** Kunci lama dibagikan sebagai plaintext lewat chat, jadi harus
+  dianggap bocor. Buat kunci baru di dashboard Resend, cabut yang lama, lalu
+  perbarui `.env.local` dan Environment Variables di Vercel.
+- **Kriteria sukses:** Kunci lama dicabut; form tetap berfungsi dengan kunci baru.
 - **Dependensi:** none
-- **Blocker:** butuh aksi pemilik (akun Resend + akses DNS).
+- **Blocker:** butuh aksi pemilik.
 
-### T-09 — Sediakan file CV PDF
-- **Deskripsi:** Taruh PDF di `public/cv-muhamad-irhashdianto.pdf` lalu
-  aktifkan kembali tombol Download CV di hero.
-- **Kriteria sukses:** Tombol mengunduh PDF yang benar, bukan 404.
-- **Dependensi:** none
-- **Blocker:** butuh file dari pemilik.
+### T-14 — Verifikasi domain di Resend
+- **Deskripsi:** Saat ini memakai `onboarding@resend.dev`, yang HANYA bisa
+  mengirim ke alamat pemilik akun Resend. Setelah `irhash.my.id` diverifikasi,
+  ubah `CONTACT_FROM_EMAIL` jadi `noreply@irhash.my.id`.
+- **Kriteria sukses:** Form bisa mengirim ke alamat tujuan mana pun, bukan hanya
+  email pemilik akun.
+- **Dependensi:** T-13
+- **Blocker:** butuh akses DNS pemilik.
 
 ### T-10 — Verifikasi isi Projects
 - **Deskripsi:** Tag `stack` project saat ini berisi domain/fitur, bukan
@@ -82,3 +84,25 @@ _(kosong)_
   membuat teks hero tidak sejajar navbar.
 - **Cara test:** Screenshot 1440px — teks hero dan brand navbar sama-sama mulai
   di x=212. **Terpenuhi.**
+
+### T-08 — Konfigurasi kredensial Resend
+- **Cara test:** `POST /api/contact` dengan payload valid → `{"ok":true}` dan
+  email benar-benar terkirim. **Terpenuhi**, diverifikasi dengan pengiriman nyata
+  ke dev.irhashdianto@gmail.com. Memakai `onboarding@resend.dev` (lihat T-14).
+
+### T-09 — Sediakan file CV PDF
+- **Deskripsi:** File dari pemilik dinamai ulang dari `Muhamad Irhashdianto.pdf`
+  jadi `cv-muhamad-irhashdianto.pdf` agar aman sebagai URL (tanpa spasi).
+- **Cara test:** `GET /cv-muhamad-irhashdianto.pdf` → 200, `application/pdf`,
+  26735 byte, 2 halaman. **Terpenuhi.** Tombol Download CV aktif kembali di hero.
+
+### T-15 — Perbaiki username GitHub yang salah
+- **Deskripsi:** HTML desain lama memakai `github.com/slcuter`; API GitHub
+  mengembalikan 404. Username yang benar `slucter`.
+- **Cara test:** `api.github.com/users/slucter` → 200, `slcuter` → 404.
+  **Terpenuhi.** Teks tampilan kini diturunkan dari `profile.socials` lewat
+  `displayUrl()` supaya tidak bisa melenceng lagi dari URL sebenarnya.
+
+### T-12 — Remote git + push
+- **Kriteria sukses:** Repo lokal terhubung ke github.com/slucter/webprofile dan
+  `main` ter-push. **Terpenuhi.**

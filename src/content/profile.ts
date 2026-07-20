@@ -76,14 +76,23 @@ export const profile = {
   /** Dipakai untuk tautan wa.me — tanpa "+" dan tanpa spasi. */
   whatsapp: '6285523509300',
   website: 'https://irhash.my.id',
+  /** Ada di public/. Nama sengaja tanpa spasi agar aman dipakai sebagai URL. */
+  cvPath: '/cv-muhamad-irhashdianto.pdf',
   location: 'Bandung, Jawa Barat, Indonesia',
   locationShort: 'Bandung, Indonesia',
   availability: 'Open to Opportunities',
   socials: {
-    github: 'https://github.com/slcuter',
+    // Catatan: HTML desain lama memakai "slcuter" — itu typo dan menghasilkan 404.
+    // Username yang benar adalah "slucter".
+    github: 'https://github.com/slucter',
     linkedin: 'https://linkedin.com/in/irhashdianto',
   },
 } as const
+
+/** Bentuk tampilan sebuah URL: tanpa skema dan tanpa "www.". */
+export function displayUrl(url: string): string {
+  return url.replace(/^https?:\/\//, '').replace(/^www\./, '')
+}
 
 // ============================================================
 // HERO & ABOUT

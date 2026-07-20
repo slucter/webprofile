@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { profile, hero } from '@/content/profile'
-import { ArrowRightIcon } from './Icons'
+import { ArrowRightIcon, DownloadIcon } from './Icons'
 
 const TYPE_SPEED = 60
 
@@ -68,8 +68,9 @@ export function Hero() {
               Lihat karya
               <ArrowRightIcon size={15} />
             </a>
-            <a href={`mailto:${profile.email}`} className="btn-ghost">
-              {profile.email}
+            <a href={profile.cvPath} className="btn-ghost" download>
+              <DownloadIcon size={13} />
+              Download CV
             </a>
           </div>
 

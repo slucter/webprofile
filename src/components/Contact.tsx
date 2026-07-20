@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
-import { profile } from '@/content/profile'
+import { profile, displayUrl } from '@/content/profile'
 import { SectionHead } from './SectionHead'
 import {
   MailIcon,
@@ -97,7 +97,7 @@ export function Contact() {
                 rel="noopener noreferrer"
               >
                 <GithubIcon size={14} />
-                github.com/slcuter
+                {displayUrl(profile.socials.github)}
               </a>
               <a
                 className="contact-item"
@@ -106,7 +106,7 @@ export function Contact() {
                 rel="noopener noreferrer"
               >
                 <LinkedinIcon size={14} />
-                linkedin.com/in/irhashdianto
+                {displayUrl(profile.socials.linkedin)}
               </a>
             </div>
           </div>
