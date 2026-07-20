@@ -12,14 +12,17 @@
   --bg:        #0D0D0D;
   --fg:        #F2F0ED;
 
-  /* Turunan opasitas dari --fg */
-  --fg-dim:    rgba(242, 240, 237, 0.62);
-  --fg-muted:  rgba(242, 240, 237, 0.42);
-  --fg-faint:  rgba(242, 240, 237, 0.24);
+  /* Turunan opasitas dari --fg.
+     Angka di bawah dipilih dari rasio kontras terhadap --bg, bukan dari selera.
+     Ambang WCAG AA teks kecil = 4.5:1; semua tingkat yang dipakai untuk teks
+     harus lolos itu. Jangan turunkan tanpa menghitung ulang. */
+  --fg-dim:    rgba(242, 240, 237, 0.80); /* ~10.7:1 — teks bodi utama */
+  --fg-muted:  rgba(242, 240, 237, 0.62); /* ~7.0:1  — teks sekunder, paragraf */
+  --fg-faint:  rgba(242, 240, 237, 0.48); /* ~4.6:1  — label mono kecil, meta */
 
   /* Garis rambut — "seperti tabel" */
-  --line:      rgba(242, 240, 237, 0.11);
-  --line-soft: rgba(242, 240, 237, 0.06);
+  --line:      rgba(242, 240, 237, 0.14);
+  --line-soft: rgba(242, 240, 237, 0.09);
 
   /* Permukaan: bukan warna baru, hanya --fg beropasitas sangat rendah */
   --surface:       rgba(242, 240, 237, 0.02);

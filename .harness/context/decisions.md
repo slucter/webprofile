@@ -83,3 +83,23 @@ dibuat nullable dan disembunyikan bila kosong.
 **Konsekuensi:** Portfolio tidak memuat klaim teknis yang tidak bisa
 dipertanggungjawabkan saat wawancara. Biayanya: tag terasa kurang spesifik sampai
 pemilik mengisinya sendiri (T-10).
+
+---
+
+# Tingkat opasitas teks ditetapkan dari rasio kontras — 2026-07-20
+
+**Konteks:** Setelah palet dipangkas jadi dua warna, seluruh hierarki visual
+bergantung pada opasitas. Nilai awal dipilih berdasarkan selera dan ternyata
+terlalu redup: pemilik mengeluh sulit dibaca. Pengukuran membenarkan keluhan itu
+— `--fg-muted` hanya 3.72:1 dan `--fg-faint` 1.98:1, dua-duanya gagal WCAG AA
+(4.5:1 untuk teks kecil).
+
+**Keputusan:** Setiap tingkat opasitas yang dipakai untuk teks wajib lolos 4.5:1
+terhadap `--bg`. Nilai baru: dim 0.80 (11.0:1), muted 0.62 (6.9:1), faint 0.48
+(4.53:1). Rasio dicatat sebagai komentar tepat di sebelah tokennya.
+
+**Konsekuensi:** Situs tetap terasa tenang tapi benar-benar terbaca, dan angka
+kontras jadi bagian kontrak desain — bukan preferensi yang bisa digeser diam-diam.
+Biayanya: ruang gerak untuk membuat sesuatu "sangat redup" jadi sempit; pembedaan
+harus lebih mengandalkan ukuran, spasi, dan huruf mono ketimbang sekadar
+menurunkan opasitas.

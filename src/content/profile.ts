@@ -134,8 +134,8 @@ export const hero = {
 /** Teks about sengaja DIPERTAHANKAN dari desain asli — bukan summary dari CV. */
 export const about = {
   paragraphs: [
-    'I started in cybersecurity -- running penetration tests, mapping attack surfaces, and learning how systems break before they break in production. That foundation shaped everything about how I build software today. Security is never an afterthought in my work; it is the starting point.',
-    'Over time, I moved deeper into full-stack development and server infrastructure. I build end-to-end web applications with Vue, React, and Node.js on the frontend and backend, and I manage the servers they run on -- from bare-metal VPS provisioning to containerized deployments behind Nginx and Cloudflare. My goal is to deliver fast, secure, and reliable systems that work cleanly at every layer.',
+    'I started in cybersecurity — running penetration tests, mapping attack surfaces, and learning how systems break before they break in production. That foundation shaped everything about how I build software today. Security is never an afterthought in my work; it is the starting point.',
+    'Over time, I moved deeper into full-stack development and server infrastructure. I build end-to-end web applications with Vue, React, and Node.js on the frontend and backend, and I manage the servers they run on — from bare-metal VPS provisioning to containerized deployments behind Nginx and Cloudflare. My goal is to deliver fast, secure, and reliable systems that work cleanly at every layer.',
   ],
   /** Kolom kiri About — dirender sebagai daftar definisi mono. */
   aside: [
@@ -200,7 +200,7 @@ export const skillGroups: SkillGroup[] = [
 
 export const experience: ExperienceEntry[] = [
   {
-    period: 'Apr 2024 -- Present',
+    period: 'Apr 2024 – Present',
     role: 'Fullstack Developer',
     company: 'PT Kawan Solusi Teknologi',
     bullets: [
@@ -213,7 +213,7 @@ export const experience: ExperienceEntry[] = [
     tags: ['Fullstack', 'Server', 'Security'],
   },
   {
-    period: 'May 2023 -- Aug 2023',
+    period: 'May 2023 – Aug 2023',
     role: 'Frontend Developer',
     company: 'PT Nexcast Indonesia',
     bullets: [
@@ -224,7 +224,7 @@ export const experience: ExperienceEntry[] = [
     tags: ['Frontend', 'HTML Canvas', 'UI/UX'],
   },
   {
-    period: 'Apr 2022 -- Feb 2023',
+    period: 'Apr 2022 – Feb 2023',
     role: 'Frontend Developer',
     company: 'PT Vodjo Teknologi Indonesia',
     bullets: [
@@ -235,7 +235,7 @@ export const experience: ExperienceEntry[] = [
     tags: ['Frontend', 'Realtime Chat', 'Data Viz'],
   },
   {
-    period: 'Feb 2021 -- Mar 2022',
+    period: 'Feb 2021 – Mar 2022',
     role: 'Frontend Developer',
     company: 'PT Sahaware Teknologi Indonesia',
     bullets: [
@@ -327,7 +327,7 @@ export const projectFilters = [
 
 export const education: EducationEntry[] = [
   {
-    period: 'Feb 2020 -- May 2020',
+    period: 'Feb 2020 – May 2020',
     title: 'Junior Web Full Stack Developer',
     institution: 'Arkademy Tech Education Platform',
     bullets: [
@@ -337,7 +337,7 @@ export const education: EducationEntry[] = [
     ],
   },
   {
-    period: 'May 2015 -- May 2018',
+    period: 'May 2015 – May 2018',
     title: 'Industrial Automation Engineering',
     institution: 'SMK Negeri 1 Jamblang',
     bullets: ['Active member of the Scout organization and school music extracurricular activities'],
